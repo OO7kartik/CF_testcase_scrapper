@@ -14,5 +14,4 @@ for mydivs in soup.find_all("div", class_ = "file input-view"):
     file.write("case #" + str(i) + ":" + "\n")
     file.write(divs.get_text())
     i+=1
-
 file.close()
