@@ -7,7 +7,7 @@ url = 'https://codeforces.com/problemset/submission/4/2785411'
 res = req.get(url)
 soup = bs4.BeautifulSoup(res.text, 'html.parser')
 
-file = open('../checker/TestCases.txt', 'w')
+file = open('TestCases.txt', 'w')
 i = 1
 for mydivs in soup.find_all("div", class_ = "file input-view"):
     divs = mydivs.find('div', class_ = "text")
@@ -16,7 +16,7 @@ for mydivs in soup.find_all("div", class_ = "file input-view"):
     i+=1
 file.close()
 
-file = open('../checker/Answers.txt', 'w')
+file = open('Answers.txt', 'w')
 i = 1
 for mydivs in soup.find_all("div", class_ = "file answer-view"):
     divs = mydivs.find('div', class_ = "text")
@@ -34,6 +34,8 @@ import time
 
 testcases = open('TestCases.txt', 'r')
 input = open('input.txt', 'w')
+output = open('output.txt', 'w')
+output.close()
 
 #running and coolecting your c++ ouput
 i = 0
@@ -49,6 +51,9 @@ for line in testcases:
             output.close()
             subprocess.call(["g++", "test.cpp"])
             subprocess.call("./a.exe")
+            output = open('output.txt', 'a')
+            output.write("\n")
+            output.close()
         input = open('input.txt', 'w')
         i+=1
 
@@ -61,7 +66,7 @@ subprocess.call("./a.exe")
 
 #now we have to check if the two files are samne
 output = open('output.txt', 'r')
-answer = open('TestCases.txt', 'r')
+answer = open('Answers.txt', 'r')
 result = open('Result.txt', 'w')
 
 i = 0

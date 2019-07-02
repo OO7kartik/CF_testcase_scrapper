@@ -1,56 +1,40 @@
 case #1:
-HARD
+YES
 case #2:
-EASY
+NO
 case #3:
-HARD
+YES
 case #4:
-EASY
+NO
 case #5:
-HARD
+NO
 case #6:
-HARD
+NO
 case #7:
-HARD
+NO
 case #8:
-HARD
+YES
 case #9:
-HARD
+YES
 case #10:
-HARD
+NO
 case #11:
-HARD
+NO
 case #12:
-HARD
+NO
 case #13:
-HARD
+YES
 case #14:
-HARD
+YES
 case #15:
-HARD
+YES
 case #16:
-HARD
+NO
 case #17:
-EASY
+YES
 case #18:
-EASY
+NO
 case #19:
-EASY
+YES
 case #20:
-EASY
-case #21:
-HARD
-case #22:
-HARD
-case #23:
-HARD
-case #24:
-HARD
-case #25:
-HARD
-case #26:
-HARD
-case #27:
-HARD
-case #28:
-HARD
+YES
