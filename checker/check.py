@@ -7,7 +7,7 @@ url = 'https://codeforces.com/problemset/submission/4/2785411'
 res = req.get(url)
 soup = bs4.BeautifulSoup(res.text, 'html.parser')
 
-file = open('../checker/TestCases.txt', 'w')
+file = open('Files/TestCases.txt', 'w')
 i = 1
 for mydivs in soup.find_all("div", class_ = "file input-view"):
     divs = mydivs.find('div', class_ = "text")
@@ -16,7 +16,7 @@ for mydivs in soup.find_all("div", class_ = "file input-view"):
     i+=1
 file.close()
 
-file = open('../checker/Answers.txt', 'w')
+file = open('Files/Answers.txt', 'w')
 i = 1
 for mydivs in soup.find_all("div", class_ = "file answer-view"):
     divs = mydivs.find('div', class_ = "text")
@@ -32,8 +32,10 @@ file.close()
 import subprocess
 import time
 
-testcases = open('TestCases.txt', 'r')
-input = open('input.txt', 'w')
+testcases = open('Files/TestCases.txt', 'r')
+input = open('Files/input.txt', 'w')
+output = open('Files/output.txt', 'w')
+output.close()
 
 #running and coolecting your c++ ouput
 i = 0
@@ -44,15 +46,18 @@ for line in testcases:
     else:
         input.close()
         if(i > 0):
-            output = open('output.txt', 'a')
+            output = open('Files/output.txt', 'a')
             output.write("case #" + str(i) + ":" + "\n")
             output.close()
             subprocess.call(["g++", "test.cpp"])
             subprocess.call("./a.exe")
-        input = open('input.txt', 'w')
+            output = open('Files/output.txt', 'a')
+            output.write("\n")
+            output.close()
+        input = open('Files/input.txt', 'w')
         i+=1
 
-output = open('output.txt', 'a')
+output = open('Files/output.txt', 'a')
 output.write("case #" + str(i) + ":" + "\n")
 output.close()
 input.close()
@@ -60,9 +65,9 @@ subprocess.call(["g++", "test.cpp"])
 subprocess.call("./a.exe")
 
 #now we have to check if the two files are samne
-output = open('output.txt', 'r')
-answer = open('TestCases.txt', 'r')
-result = open('Result.txt', 'w')
+output = open('Files/output.txt', 'r')
+answer = open('Files/Answers.txt', 'r')
+result = open('Files/Result.txt', 'w')
 
 i = 0
 ans = True

@@ -4,8 +4,8 @@ using namespace std;
 int main()
 {
 
-    freopen("input.txt", "r", stdin);
-    freopen("output.txt", "a", stdout);
+    freopen("Files/input.txt", "r", stdin);
+    freopen("Files/output.txt", "a", stdout);
 
     int n;
     cin>>n;
