@@ -1,40 +1,115 @@
 case #1:
-8
+4
+word
+localization
+internationalization
+pneumonoultramicroscopicsilicovolcanoconiosis
 case #2:
 5
+abcdefgh
+abcdefghi
+abcdefghij
+abcdefghijk
+abcdefghijklm
 case #3:
-4
-case #4:
 3
+njfngnrurunrgunrunvurn
+jfvnjfdnvjdbfvsbdubruvbubvkdb
+ksdnvidnviudbvibd
+case #4:
+1
+tcyctkktcctrcyvbyiuhihhhgyvyvyvyvjvytchjckt
 case #5:
-2
+24
+you
+are
+registered
+for
+practice
+you
+can
+solve
+problems
+unofficially
+results
+can
+be
+found
+in
+the
+contest
+status
+and
+in
+the
+bottom
+of
+standings
 case #6:
 1
+a
 case #7:
-7
+26
+a
+b
+c
+d
+e
+f
+g
+h
+i
+j
+k
+l
+m
+n
+o
+p
+q
+r
+s
+t
+u
+v
+w
+x
+y
+z
 case #8:
-6
+1
+abcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghij
 case #9:
 10
+gyartjdxxlcl
+fzsck
+uidwu
+xbymclornemdmtj
+ilppyoapitawgje
+cibzc
+drgbeu
+hezplmsdekhhbo
+feuzlrimbqbytdu
+kgdco
 case #10:
-9
+Long input....
 case #11:
-53
+Long input....
 case #12:
-77
+Long input....
 case #13:
-32
+Long input....
 case #14:
-44
+Long input....
 case #15:
-98
+Long input....
 case #16:
-99
+Long input....
 case #17:
-90
+Long input....
 case #18:
-67
+Long input....
 case #19:
-100
+Long input....
 case #20:
-88
+Long input....

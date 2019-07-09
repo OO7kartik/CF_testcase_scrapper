@@ -18,23 +18,23 @@ case #8: Passed
 
 case #9: Passed
 
-case #10: Passed
+case #10: >>>>Long input..Skipped
 
-case #11: Passed
+case #11: >>>>Long input..Skipped
 
-case #12: Passed
+case #12: >>>>Long input..Skipped
 
-case #13: Passed
+case #13: >>>>Long input..Skipped
 
-case #14: Passed
+case #14: >>>>Long input..Skipped
 
-case #15: Passed
+case #15: >>>>Long input..Skipped
 
-case #16: Passed
+case #16: >>>>Long input..Skipped
 
-case #17: Passed
+case #17: >>>>Long input..Skipped
 
-case #18: Passed
+case #18: >>>>Long input..Skipped
 
-case #19: Passed
+case #19: >>>>Long input..Skipped
 
