@@ -1,96 +1,50 @@
 case #1:
-4
-word
-localization
-internationalization
-pneumonoultramicroscopicsilicovolcanoconiosis
+3 4
+AAAA
+ABCA
+AAAA
 case #2:
-5
-abcdefgh
-abcdefghi
-abcdefghij
-abcdefghijk
-abcdefghijklm
+3 4
+AAAA
+ABCA
+AADA
 case #3:
-3
-njfngnrurunrgunrunvurn
-jfvnjfdnvjdbfvsbdubruvbubvkdb
-ksdnvidnviudbvibd
+4 4
+YYYR
+BYBY
+BBBY
+BBBY
 case #4:
-1
-tcyctkktcctrcyvbyiuhihhhgyvyvyvyvjvytchjckt
+7 6
+AAAAAB
+ABBBAB
+ABAAAB
+ABABBB
+ABAAAB
+ABBBAB
+AAAAAB
 case #5:
-24
-you
-are
-registered
-for
-practice
-you
-can
-solve
-problems
-unofficially
-results
-can
-be
-found
-in
-the
-contest
-status
-and
-in
-the
-bottom
-of
-standings
+2 13
+ABCDEFGHIJKLM
+NOPQRSTUVWXYZ
 case #6:
-1
-a
+2 2
+AA
+AA
 case #7:
-26
-a
-b
-c
-d
-e
-f
-g
-h
-i
-j
-k
-l
-m
-n
-o
-p
-q
-r
-s
-t
-u
-v
-w
-x
-y
-z
+2 2
+AA
+AB
 case #8:
-1
-abcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghij
+3 3
+AAA
+ABA
+AAA
 case #9:
-10
-gyartjdxxlcl
-fzsck
-uidwu
-xbymclornemdmtj
-ilppyoapitawgje
-cibzc
-drgbeu
-hezplmsdekhhbo
-feuzlrimbqbytdu
-kgdco
+3 3
+AAA
+ABA
+ABA
 case #10:
 Long input....
 case #11:
@@ -113,3 +67,83 @@ case #19:
 Long input....
 case #20:
 Long input....
+case #21:
+10 10
+EGFJGJKGEI
+AKJHBGHIHF
+JBABBCFGEJ
+CJDJHJJKBD
+KHJIKKGGEK
+HHJHKHGEKF
+EKFCAJGGDK
+AFKBBFICAA
+FEDFAGHEKA
+CAAGIFHGGI
+case #22:
+10 10
+HIICQRHPUJ
+BCDUKHMBFK
+PFTUIDOBOE
+QQPITLRKUP
+ERMUJMOSMF
+MRSICEILQB
+ODIGFNCHFR
+GHIOAFLHJH
+FBLAQNGEIF
+FDLEGDUTNG
+case #23:
+2 50
+DADCDBCCDAACDBCAACADBCBDBACCCCDADCBACADBCCBDBCCBCC
+DADAADCABBBACCDDBABBBDCBACBCCCCDDADCDABADDDCABACDB
+case #24:
+50 2
+AA
+CD
+EE
+FC
+ED
+AF
+FC
+AD
+BA
+AF
+BF
+DA
+AC
+FC
+FA
+BF
+AD
+BB
+DC
+AF
+AA
+AD
+EE
+ED
+CD
+FC
+FB
+BB
+DD
+EB
+BE
+CF
+DE
+AE
+FD
+AB
+FB
+AE
+BE
+FA
+CF
+FB
+DE
+ED
+AD
+FA
+BB
+BF
+DA
+EE

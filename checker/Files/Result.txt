@@ -1,3 +1,15 @@
+AC: 13
+WA: 0
+TLE: 0
+TotalCases: 13
+
+Unjudged due to long input:11
+
+
+-----------------------------------------------------DETAILS---------------------------------------------------------------------
+
+
+
 case #0: Passed
 
 case #1: Passed
@@ -37,4 +49,12 @@ case #17: >>>>Long input..Skipped
 case #18: >>>>Long input..Skipped
 
 case #19: >>>>Long input..Skipped
+
+case #20: >>>>Long input..Skipped
+
+case #21: Passed
+
+case #22: Passed
+
+case #23: Passed
 

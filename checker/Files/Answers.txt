@@ -1,125 +1,48 @@
 case #1:
-word
-l10n
-i18n
-p43s
+Yes
 case #2:
-abcdefgh
-abcdefghi
-abcdefghij
-a9k
-a11m
+No
 case #3:
-n20n
-j27b
-k15d
+Yes
 case #4:
-t41t
+Yes
 case #5:
-you
-are
-registered
-for
-practice
-you
-can
-solve
-problems
-u10y
-results
-can
-be
-found
-in
-the
-contest
-status
-and
-in
-the
-bottom
-of
-standings
+No
 case #6:
-a
+Yes
 case #7:
-a
-b
-c
-d
-e
-f
-g
-h
-i
-j
-k
-l
-m
-n
-o
-p
-q
-r
-s
-t
-u
-v
-w
-x
-y
-z
+No
 case #8:
-a98j
+Yes
 case #9:
-g10l
-fzsck
-uidwu
-x13j
-i13e
-cibzc
-drgbeu
-h12o
-f13u
-kgdco
+No
 case #10:
-lkpmx
-k26v
-h22a
-t13w
-q12c
-trissbaf
-q21d
-z13x
-o17x
-lpuzqgec
-g18w
-r19a
-v25v
-x15j
-l28q
-y26c
-x12r
-v26w
-s27y
-y9t
+Yes
 case #11:
-Long input....
+No
 case #12:
-Long input....
+No
 case #13:
-Long input....
+Yes
 case #14:
-Long input....
+Yes
 case #15:
-Long input....
+No
 case #16:
-Long input....
+Yes
 case #17:
-Long input....
+Yes
 case #18:
-Long input....
+No
 case #19:
-Long input....
+Yes
 case #20:
-Long input....
+No
+case #21:
+No
+case #22:
+No
+case #23:
+Yes
+case #24:
+No
