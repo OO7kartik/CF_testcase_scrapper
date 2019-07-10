@@ -8,7 +8,11 @@ from threading import Thread
 
 #needed stuff
 TimeLimit = 2 #time limit of the problem in seconds
+ProblemId = input("Enter the Problem id: ")
+
 #should ask problem number and automatically crawel and then scrape
+
+#div.a['href']
 
 class RunCmd(Thread):
     def __init__(self, cmd, timeout):
@@ -29,7 +33,14 @@ class RunCmd(Thread):
             self.join()
             return True
 
-url = 'https://codeforces.com/problemset/submission/510/9680110'
+print("Retrieving data...")
+tempUrl = 'https://codeforces.com/problemset/status/' + str(ProblemId[:-1]) + '/problem/' + str(ProblemId[-1].upper())
+tempRes = req.get(tempUrl)
+tempSoup = bs4.BeautifulSoup(tempRes.text, 'html.parser')
+for a in tempSoup.findAll('a', href=True):
+    if '/problemset/submission/' in a['href']:
+        url = 'https://codeforces.com/'+a["href"]
+        break;
 res = req.get(url)
 soup = bs4.BeautifulSoup(res.text, 'html.parser')
 
@@ -59,6 +70,8 @@ file.close()
 
 #this runs your c++ code
 # generates its output and compares the output with the expected one
+
+print("Running your program on all testcases.... (around 10s-30s)")
 
 testcases = open('Files/TestCases.txt', 'r')
 input = open('Files/input.txt', 'w')
@@ -116,6 +129,8 @@ output.close()
 output = open('Files/output.txt', 'r')
 answer = open('Files/Answers.txt', 'r')
 result = open('Files/Result.txt', 'w')
+
+print("Generating your grade......")
 
 i = 0
 TotalCases = 0
@@ -190,5 +205,6 @@ with open('Files/Result.txt', 'r+') as f:
     f.seek(0, 0)
     f.write(line + '\n' + content)
 
-
+print("Results declared! Good luck!\n\n")
+print("AC: "+str(Passed)+"\nWA: "+str(Failed)+"\nTLE: "+str(TimeLimit)+"\nTotalCases: "+str(TotalCases)+"\n\nUnjudged due to long input:"+str(Unjudjed))
 #check the results file to see how you performed
