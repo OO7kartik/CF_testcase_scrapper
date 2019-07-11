@@ -1,0 +1,51 @@
+AC: 20
+WA: 0
+TLE: 0
+TotalCases: 20
+
+Unjudged due to long input:0
+
+
+--------------------DETAILS--------------------
+
+
+case #0: Passed
+
+case #1: Passed
+
+case #2: Passed
+
+case #3: Passed
+
+case #4: Passed
+
+case #5: Passed
+
+case #6: Passed
+
+case #7: Passed
+
+case #8: Passed
+
+case #9: Passed
+
+case #10: Passed
+
+case #11: Passed
+
+case #12: Passed
+
+case #13: Passed
+
+case #14: Passed
+
+case #15: Passed
+
+case #16: Passed
+
+case #17: Passed
+
+case #18: Passed
+
+case #19: Passed
+
