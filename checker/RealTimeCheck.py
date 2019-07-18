@@ -8,6 +8,8 @@ import subprocess
 import time
 from threading import Thread
 from time import sleep
+import os
+import filecmp
 
 def get_input():
     get_input.ProblemId = simpledialog.askstring("Problem Id", "Enter the Problem id: ")
@@ -43,15 +45,16 @@ class RunCmd(Thread):
         self.start()
         self.join(self.timeout)
 
-        if self.is_alive():
-            self.p.terminate()
-            self.join()
-            return True
+        #for TlE, have to fix this
+        # if self.is_alive():
+        #     self.p.terminate()
+        #     self.join()
+        #     return True
 
-root = Tk()
-retData = Label(root, text="Retrieving data...").pack()
-root.after(2000, root.destroy)
-root.mainloop()
+# root = Tk()
+# retData = Label(root, text="Retrieving data...").pack()
+# root.after(2000, root.destroy)
+# root.mainloop()
 
 tempUrl = 'https://codeforces.com/problemset/status/' + str(ProblemId[:-1]) + '/problem/' + str(ProblemId[-1].upper())
 tempRes = req.get(tempUrl)
@@ -73,6 +76,7 @@ for mydivs in soup.find_all("div", class_ = "file input-view"):
     else:
         file.write(divs)
     i+=1
+file.write("case #" + "over"+ ":" + "\n")
 
 file = open('Files/Answers.txt', 'w')
 i = 1
@@ -89,138 +93,75 @@ file.close()
 
 #this runs your c++ code
 # generates its output and compares the output with the expected one
-root = Tk()
-retData = Label(root, text="Running your program on all testcases.... (around 10s-30s)").pack()
-root.after(2000, root.destroy)
-root.mainloop()
+# root = Tk()
+# retData = Label(root, text="Running your program on all testcases.... (around 10s-30s)").pack()
+# root.after(2000, root.destroy)
+# root.mainloop()
 
 testcases = open('Files/TestCases.txt', 'r')
-input = open('Files/input.txt', 'w')
-output = open('Files/output.txt', 'w')
-output.close()
-results = open('Files/Result.txt','w')
-results.write("Grading in process....")
+results = open('Files/Result.txt', 'w')
 results.close()
 
 #running and coolecting your c++ ouput
-i = 0
-LongInput = False
-for line in testcases:
-    if(line == '\n'):
-        continue;
-    elif(line.find("case") == -1):
-        if("Long input...." in line):
-            LongInput = True
-        else:
-            input.write(line)
-    else:
-        input.close()
-        if(i > 0):
-            output = open('Files/output.txt', 'a')
-            if(LongInput):
-                output.write("case #" + str(i) + ":" + "\n")
-                output.write("Long input....\n")
-                LongInput = False
-            else:
-                output.write("case #" + str(i) + ":" + "\n")
-                output.close()
-                subprocess.call(["g++", "../test.cpp"])
-                problem = RunCmd(["./a.exe"], TimeLimit).Run()
-                output = open('Files/output.txt', 'a')
-                if(problem):
-                    output.write("TLE\n")
-                else:
-                    output.write("\n")
-                output.close()
-        input = open('Files/input.txt', 'w')
-        i+=1
+if(os.path.exists('Files/Info')):
+    os.rmdir('Files/Info')
+os.mkdir('Files/Info')
 
-output = open('Files/output.txt', 'a')
-output.write("case #" + str(i) + ":" + "\n")
-output.close()
-input.close()
-subprocess.call(["g++", "../test.cpp"])
-problem = RunCmd(["./a.exe"], TimeLimit).Run()
-output = open('Files/output.txt', 'a')
-if(problem):
-    output.write("TLE")
-output.close()
-
-#now we have to check if the two files are samne
-output = open('Files/output.txt', 'r')
-answer = open('Files/Answers.txt', 'r')
-result = open('Files/Result.txt', 'w')
-
-root = Tk()
-retData = Label(root, text="Generating your grade......").pack()
-root.after(2000, root.destroy)
-root.mainloop()
-
-i = 0
+i = 1
 TotalCases = 0
 Passed = 0
 TimeLimit = 0
 Failed = 0
 Unjudjed = 0
 ans = True
+t_line = testcases.readline()
+t_line = testcases.readline()
 
-o_line = output.readline()
-a_line = answer.readline()
 
-#to complete this white, so that it check both files
-
-while(o_line and a_line):
-    while(o_line == '\n'):
-        o_line = output.readline()
-    while(a_line == '\n'):
-        a_line = answer.readline()
-
-    if("case" in o_line  and "case" in a_line):
-        if(ans):
-            result.write("case #" + str(i) + ": Passed\n\n")
-            Passed +=1
-            TotalCases += 1
+#the problem is the second time we call subprocess, it fails.
+#lets do this lets find this out.....
+while(t_line):
+    while(t_line == '\n'):
+        t_line = testcases.readline()
+    if(t_line.find("case") != -1): #means we find case
+        st = time.time()
+        subprocess.call(["g++", "../test.cpp"])
+        problem = RunCmd(["./a.exe"], TimeLimit).Run()
+        tt = (time.time() - st) / 1000
+        #we need to store the expected output.....
+        results = open("Files/Result.txt", "a")
+        if(problem):
+            result.write("case #" + str(i) + ":  ---------TLE---------\n\n")
+            i+=1
         else:
-            result.write("case #" + str(i) + ": ---------Failed---------\n\n")
-            Failed += 1
-            TotalCases += 1
+            if(filecmp.cmp('Files/output.txt', 'Files/outpu{}.txt'.format('t'))):
+                results.write("case #" + str(i) + ": Passed in: " + "%.2f" % tt + " ms\n\n")
+                Passed +=1
+                TotalCases += 1
+            else:
+                result.write("case #" + str(i) + ": -->Failed<-- in " + "%.2f" % tt + "ms\n\n")
+                Failed += 1
+                TotalCases += 1
+                #need to add a button here
         i+=1
-        ans = True
-    elif("case" in o_line  or "case" in a_line):
-        while(o_line.find("case") == -1):
-            o_line = output.readline()
-        while(a_line.find("case") == -1):
-            a_line = answer.readline()
-        ans = False
-    elif(not(o_line.find("Long input....") == -1)):
+        t_line = testcases.readline()
+        results.close()
+
+    elif("Long input...." in t_line):
         result.write("case #" + str(i) + ": >>>>Long input..Skipped\n\n")
+        t_line = readline()
+        t_line = readline()
         i+=1
-        ans = True;
-        while(o_line and o_line.find("case") == -1):
-            o_line = output.readline()
-        while(a_line and a_line.find("case") == -1):
-            a_line = answer.readline()
-        Unjudjed += 1
-    elif(not(o_line.find("TLE") == -1)):
-        result.write("case #" + str(i) + ":  ---------TLE---------\n\n")
-        i+=1
-        ans = True;
-        while(o_line and o_line.find("case") == -1):
-            o_line = output.readline()
-        while(a_line and a_line.find("case") == -1):
-            a_line = answer.readline()
-        TimeLimit += 1
-        TotalCases += 1
     else:
-        if(o_line != a_line):
-            ans = False
+        input = open('Files/input.txt', 'w')
+        while(t_line.find("case") == -1): #we dont find
+            input.write(t_line)
+            t_line = testcases.readline()
+            while(t_line == '\n'):
+                t_line = testcases.readline()
+        input.close()
 
-    o_line = output.readline()
-    a_line = answer.readline()
-
-output.close()
-answer.close()
-result.close()
+results.close()
 
 line = "AC: "+str(Passed)+"\nWA: "+str(Failed)+"\nTLE: "+str(TimeLimit)+"\nTotalCases: "+str(TotalCases)+"\n\nUnjudged due to long input:"+str(Unjudjed)+"\n\n\n" + "--------------------DETAILS--------------------\n\n"
 #to write this at the start of result.txt
@@ -229,15 +170,16 @@ with open('Files/Result.txt', 'r+') as f:
     f.seek(0, 0)
     f.write(line + '\n' + content)
 
-root = Tk()
-retData = Label(root, text="Results declared! Good luck!").pack()
-root.after(1000, root.destroy)
-root.mainloop()
+# root = Tk()
+# retData = Label(root, text="Results declared! Good luck!").pack()
+# root.after(1000, root.destroy)
+# root.mainloop()
 # print("Results declared! Good luck!\n\n")
 # print("AC: "+str(Passed)+"\nWA: "+str(Failed)+"\nTLE: "+str(TimeLimit)+"\nTotalCases: "+str(TotalCases)+"\n\nUnjudged due to long input:"+str(Unjudjed))
 
 def quit():
     root.destroy()
+    os.rmdir('Files/Info')
     exit()
 
 ShowDetails = False
@@ -268,3 +210,7 @@ T.pack(side=LEFT, fill=Y)
 T.config(yscrollcommand=S.set)
 T.insert(END, data)
 root.mainloop()
+
+
+
+os.rmdir('Files/Info')
