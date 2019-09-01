@@ -7,9 +7,9 @@ int main()
 {
 
     freopen("Files/input.txt", "r", stdin);
-    freopen("Files/output.txt", "w", stdout);
+    freopen("Files/output.txt", "a", stdout);
 
-		int n;
+	 int n;
     cin>>n;
     if(n == 2)
     {

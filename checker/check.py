@@ -9,11 +9,14 @@ import time
 from threading import Thread
 from time import sleep
 
+extension = ".out"
+
 def get_input():
     get_input.ProblemId = simpledialog.askstring("Problem Id", "Enter the Problem id: ")
-    get_input.TimeLimit = simpledialog.askinteger("Time Limit", "Enter time limit per test: ")
+    #get_input.TimeLimit = simpledialog.askinteger("Time Limit", "Enter time limit per test: ")
+    get_input.file_to_test = simpledialog.askstring("file_to_test", "Submit file name:  ")
     Label(root, text="ProblemId: "+str(get_input.ProblemId)).pack()
-    Label(root, text="TimeLimit: "+str(get_input.TimeLimit)).pack()
+    #Label(root, text="TimeLimit: "+str(get_input.TimeLimit)).pack()
     root.destroy()
 
 root = Tk()
@@ -27,26 +30,27 @@ root.mainloop()
 
 
 ProblemId = get_input.ProblemId
-TimeLimit = get_input.TimeLimit
+    TimeLimit = 10
+    file_to_test = get_input.file_to_test
 
-class RunCmd(Thread):
-    def __init__(self, cmd, timeout):
-        Thread.__init__(self)
-        self.cmd = cmd
-        self.timeout = timeout
+    class RunCmd(Thread):
+        def __init__(self, cmd, timeout):
+            Thread.__init__(self)
+            self.cmd = cmd
+            self.timeout = timeout
 
-    def run(self):
-        self.p = subprocess.Popen(self.cmd)
-        self.p.wait()
+        def run(self):
+            self.p = subprocess.Popen(self.cmd)
+            self.p.wait()
 
-    def Run(self):
-        self.start()
-        self.join(self.timeout)
+        def Run(self):
+            self.start()
+            self.join(self.timeout)
 
-        if self.is_alive():
-            self.p.terminate()
-            self.join()
-            return True
+            if self.is_alive():
+                self.p.terminate()
+                self.join()
+                return True
 
 root = Tk()
 retData = Label(root, text="Retrieving data...").pack()
@@ -124,8 +128,8 @@ for line in testcases:
             else:
                 output.write("case #" + str(i) + ":" + "\n")
                 output.close()
-                subprocess.call(["g++", "../test.cpp"])
-                problem = RunCmd(["./a.exe"], TimeLimit).Run()
+                subprocess.call(["g++", file_to_test])
+                problem = RunCmd(["./a"+extension], TimeLimit).Run()
                 output = open('Files/output.txt', 'a')
                 if(problem):
                     output.write("TLE\n")
@@ -139,8 +143,8 @@ output = open('Files/output.txt', 'a')
 output.write("case #" + str(i) + ":" + "\n")
 output.close()
 input.close()
-subprocess.call(["g++", "../test.cpp"])
-problem = RunCmd(["./a.exe"], TimeLimit).Run()
+subprocess.call(["g++", file_to_test])
+problem = RunCmd(["./a"+extension], TimeLimit).Run()
 output = open('Files/output.txt', 'a')
 if(problem):
     output.write("TLE")
