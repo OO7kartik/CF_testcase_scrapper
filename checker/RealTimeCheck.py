@@ -10,6 +10,43 @@ from threading import Thread
 from time import sleep
 import os
 import filecmp
+from shutil import rmtree as rmt
+import errno
+import stat
+
+def handleRemoveReadonly(func, path, exc):
+  excvalue = exc[1]
+  if func in (os.rmdir, os.remove) and excvalue.errno == errno.EACCES:
+      os.chmod(path, stat.S_IRWXU| stat.S_IRWXG| stat.S_IRWXO)
+      func(path)
+  else:
+      raise
+
+def areFilesEqual(file1, file2):
+    f1 = open(file1).read().splitlines()
+    f2 = open(file2).read().splitlines()
+
+    print(f1)
+    print(f2)
+
+    if(len(f1) != len(f2)):
+        return False
+    else:
+        for (l1, l2) in zip(f1, f2):
+            if(l1.rstrip() != l2.rstrip()):
+                return False
+    return True
+
+if(os.path.exists('Files/Info/answers')):
+    rmt('Files/Info/answers', ignore_errors=False, onerror=handleRemoveReadonly)
+if(os.path.exists('Files/Info/FailOp')):
+    rmt('Files/Info/FailOp', ignore_errors=False, onerror=handleRemoveReadonly)
+
+if(os.path.exists('Files/Info')):
+    rmt('Files/Info', ignore_errors=False, onerror=handleRemoveReadonly)
+os.mkdir('Files/Info')
+os.mkdir('Files/Info/answers')
+os.mkdir('Files/Info/FailOp')
 
 def get_input():
     get_input.ProblemId = simpledialog.askstring("Problem Id", "Enter the Problem id: ")
@@ -86,6 +123,9 @@ for mydivs in soup.find_all("div", class_ = "file answer-view"):
     if(divs[len(divs)-3] == '.'):
         file.write("Long input....\n")
     else:
+        f = open('Files/Info/answers/ans{}.txt'.format(i), 'w')
+        f.write(divs)
+        f.close()
         file.write(divs)
     i+=1
 file.close()
@@ -101,11 +141,6 @@ file.close()
 testcases = open('Files/TestCases.txt', 'r')
 results = open('Files/Result.txt', 'w')
 results.close()
-
-#running and coolecting your c++ ouput
-if(os.path.exists('Files/Info')):
-    os.rmdir('Files/Info')
-os.mkdir('Files/Info')
 
 i = 1
 TotalCases = 0
@@ -134,12 +169,13 @@ while(t_line):
             result.write("case #" + str(i) + ":  ---------TLE---------\n\n")
             i+=1
         else:
-            if(filecmp.cmp('Files/output.txt', 'Files/outpu{}.txt'.format('t'))):
+            if(areFilesEqual('Files/output.txt', 'Files/Info/answers/ans{}.txt'.format(i))):
                 results.write("case #" + str(i) + ": Passed in: " + "%.2f" % tt + " ms\n\n")
                 Passed +=1
                 TotalCases += 1
             else:
-                result.write("case #" + str(i) + ": -->Failed<-- in " + "%.2f" % tt + "ms\n\n")
+                print(areFilesEqual('Files/output.txt', 'Files/Info/answers/ans{}.txt'.format(i)))
+                results.write("case #" + str(i) + ": -->Failed<-- in " + "%.2f" % tt + "ms\n\n")
                 Failed += 1
                 TotalCases += 1
                 #need to add a button here
@@ -210,7 +246,3 @@ T.pack(side=LEFT, fill=Y)
 T.config(yscrollcommand=S.set)
 T.insert(END, data)
 root.mainloop()
-
-
-
-os.rmdir('Files/Info')
